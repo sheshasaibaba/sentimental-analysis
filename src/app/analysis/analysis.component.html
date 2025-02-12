@@ -1,0 +1,13 @@
+<div class="mt-5 text-center">
+    <form [formGroup]="textForm" (ngSubmit)="onSubmit()">
+        <mat-form-field class="w-100 mb-3">
+            <mat-label>Text to analyze</mat-label>
+            <textarea matInput formControlName="text"
+                placeholder="Your text for sentimental analysis" rows="5" required></textarea>
+            @if (textForm.get('text')?.invalid && textForm.get('text')?.touched) {
+            <mat-error>{{ getErrorMessage('text') }}</mat-error>
+            }
+        </mat-form-field>
+        <button type="submit" class="btn btn-primary" [disabled]="textForm.invalid">Analyze</button>
+    </form>
+</div>
