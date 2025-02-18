@@ -1,1 +1,33 @@
-<p>home works!</p>
+<div class="container mt-5">
+    <h2 class="mb-4">Sentiment Analysis Dashboard</h2>
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <div class="card h-100 text-center d-flex align-items-center justify-content-center bg-light">
+                <div class="card-body">
+                    <h5 class="card-title">Total Analyzed Texts</h5>
+                    <p class="card-text display-6 text-primary align-middle">{{ totalAnalyzedTexts }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card h-100 text-center d-flex align-items-center justify-content-center bg-light">
+                <div class="card-body">
+                    <h5 class="card-title">Average Sentiment Score</h5>
+                    <p class="card-text display-6 text-success">{{ averageSentimentScore | number: '1.2-2'}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card h-100 text-center d-flex align-items-center justify-content-center bg-light">
+                <div class="card-body">
+                    <h5 class="card-title">Sentiment Distribution</h5>
+                    <ul class="list-group">
+                        <li class="list-group-item" *ngFor="let dist of sentimentDistribution">
+                            {{ dist.Sentiment }}: {{ dist.count }}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -2,12 +2,26 @@
     <form [formGroup]="textForm" (ngSubmit)="onSubmit()">
         <mat-form-field class="w-100 mb-3">
             <mat-label>Text to analyze</mat-label>
-            <textarea matInput formControlName="text"
-                placeholder="Your text for sentimental analysis" rows="5" required></textarea>
+            <textarea matInput formControlName="text" placeholder="Your text for sentimental analysis" rows="5"
+                required></textarea>
             @if (textForm.get('text')?.invalid && textForm.get('text')?.touched) {
             <mat-error>{{ getErrorMessage('text') }}</mat-error>
             }
         </mat-form-field>
-        <button type="submit" class="btn btn-primary" [disabled]="textForm.invalid">Analyze</button>
+        <button type="submit" class="btn btn-primary" [disabled]="textForm.invalid || isLoadingOrNot()">Analyze <div
+                *ngIf="isLoadingOrNot()" class="spinner-border text-dark ms-2" role="status">
+            </div></button>
     </form>
+</div>
+
+<div *ngIf="analysisResult?.sentiment" class="mt-5 text-center">
+    <h4>Analysis Result</h4>
+
+    <p class="mt-3 fs-3">Sentiment: <span class="result"
+            [ngStyle]="{'color': getSentimentColor(analysisResult?.sentiment || 'neutral')}">{{
+            analysisResult?.sentiment }}</span></p>
+    <p class=" mt-3 fs-3">Sentiment Score: <span class="result"
+            [ngStyle]="{'color': getSentimentColor(analysisResult?.sentiment || 'neutral')}">{{ analysisResult?.score
+            }}</span></p>
+
 </div>
